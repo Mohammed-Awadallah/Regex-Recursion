@@ -61,25 +61,25 @@ Input: n = 3, k = 3
 Output: ["123", "132", "213", "231", "312", "321"] */
 
 function permutations(n,k){
-    let arr = [];
-    for (var i = 1; i <= n; i++) {
-        arr.push(i);
-    }
-    k--;
-    var mod = 1;
-    for (var i = 1; i <= n; i++) {
-        mod = mod * i;
-    }
-    var result = "";
-    for(var i = 0; i < n; i++) {
-        mod = mod / (n - i);
-        var x = k / mod;
-        k = k % mod;
-        result += arr[x];
+    var str = '';
+  var nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  var factorial = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]; // n!
+  var tmp1 = 0;
+  var tmp2 = 0;
 
-    }
+  k--;
 
-    return arr;
+  for (var j = n; j >= 1; j--) {
+    tmp1 = factorial[j - 1];
+    tmp2 = Math.floor(k / tmp1);
+
+    k %= tmp1;
+    str += nums[tmp2];
+
+    nums.splice(tmp2, 1);
+  }
+
+  return str;
         
     }
 
